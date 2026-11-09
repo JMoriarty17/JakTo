@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GeoStamp</title>
+<link rel="icon" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <img src="assets/logo.svg" alt="" width="40" height="40">
+  <div><h1>GeoStamp</h1><p>Cap waktu, koordinat, alamat, dan peta di foto. Semua diproses di browser.</p></div>
+</header>
+<main>
+  <section id="left">
+    <div id="drop" tabindex="0" role="button" aria-label="Pilih foto">
+      <canvas id="stage"></canvas>
+      <p id="hint">Seret foto ke sini atau klik untuk memilih</p>
+    </div>
+    <div id="thumbs"></div>
+    <div class="bar">
+      <button id="del" type="button">Hapus foto ini</button>
+      <button id="expOne" type="button">Unduh foto ini</button>
+      <button id="expAll" type="button" class="pri">Unduh semua</button>
+    </div>
+  </section>
+  <aside>
+    <fieldset><legend>Waktu</legend>
+      <label>Network<input id="tn" data-k type="datetime-local" step="1"></label>
+      <label class="chk"><input id="same" data-k type="checkbox" checked>Local sama dengan Network</label>
+      <label>Local<input id="tl" data-k type="datetime-local" step="1"></label>
+      <div class="row">
+        <label>Zona<select id="tz" data-k><option value="+07:00">WIB (+07:00)</option><option value="+08:00">WITA (+08:00)</option><option value="+09:00">WIT (+09:00)</option></select></label>
+        <label>Tambah menit per foto<input id="inc" data-k type="number" value="0" step="1"></label>
+      </div>
+    </fieldset>
+    <fieldset><legend>Lokasi</legend>
+      <div class="row"><select id="preset" aria-label="Preset"></select><button id="psave" type="button">Simpan preset</button><button id="pdel" type="button">Hapus</button></div>
+      <label>Koordinat (desimal atau DMS)<input id="coord" data-k value="-1.72448, 114.83043"></label>
+      <output id="dmsOut"></output>
+      <label>Alamat (satu baris per baris)<textarea id="addr" data-k rows="5">Jalan Tugu
+Hilir Sper
+Kecamatan Dusun Selatan
+Kabupaten Barito Selatan
+Kalimantan Tengah</textarea></label>
+      <button id="geo" type="button">Isi alamat dari koordinat</button>
+    </fieldset>
+    <fieldset><legend>Peta</legend>
+      <label>Sumber<select id="mmode" data-k><option value="none">Tanpa peta</option><option value="shot">Screenshot (geser untuk crop)</option><option value="osm">OpenStreetMap otomatis</option></select></label>
+      <div id="shotBox" hidden>
+        <input id="shotFile" type="file" accept="image/*">
+        <label>Zoom crop<input id="zs" data-k type="range" min="1" max="4" step="0.05" value="1"></label>
+        <small>Bisa juga tempel (Ctrl+V) screenshot. Geser kotak peta di bawah untuk memilih bagian.</small>
+      </div>
+      <div id="osmBox" hidden><label>Zoom peta<input id="zo" data-k type="range" min="13" max="19" step="1" value="17"></label></div>
+      <canvas id="mapView" width="256" height="256"></canvas>
+      <label class="chk"><input id="pin" data-k type="checkbox" checked>Tampilkan pin merah</label>
+    </fieldset>
+    <fieldset><legend>Tampilan</legend>
+      <label>Ukuran teks<input id="tsize" data-k type="range" min="60" max="160" value="100"></label>
+      <label>Opasitas teks<input id="topa" data-k type="range" min="20" max="100" value="76"></label>
+      <label>Ukuran peta<input id="msize" data-k type="range" min="50" max="150" value="100"></label>
+      <label>Opasitas peta<input id="mopa" data-k type="range" min="20" max="100" value="66"></label>
+    </fieldset>
+    <fieldset><legend>Ekspor</legend>
+      <label>Nama file ({n} nomor, {name} nama asli)<input id="fname" data-k value="{name}_stamp"></label>
+      <label>Kualitas JPG<input id="q" data-k type="range" min="0.5" max="1" step="0.01" value="0.92"></label>
+    </fieldset>
+  </aside>
+</main>
+<input id="files" type="file" accept="image/*" multiple hidden>
+<script src="js/app.js"></script>
+</body>
+</html>
