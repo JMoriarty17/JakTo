@@ -2,9 +2,6 @@
 
 Cap waktu, koordinat, alamat, dan peta pada foto, dibuat dari template OpenCamera. Berjalan sepenuhnya di browser (tanpa server, foto tidak diunggah).
 
-## Pakai
-Buka `index.html`, atau pakai GitHub Pages: Settings > Pages > Deploy from branch > `main` / root.
-
 ## Fitur
 - Seret foto (banyak sekaligus), pratinjau langsung, unduh satu atau semua
 - Konverter koordinat: ketik desimal atau DMS, hasil DMS otomatis
